@@ -22,7 +22,7 @@ const fetchUsers = () => dispatch => {
             const { data: users } = response;
             dispatch(fetchUsersSuccess(users));
         })
-        .catch(error => fetchUsersFailure(error.message));
+        .catch(error => dispatch(fetchUsersFailure(error.message)));
 };
 
 
@@ -45,4 +45,7 @@ const reducer = (state = initialState, action) => {
 
 // Store //
 const store = createStore(reducer, applyMiddleware(reduxThunk));
+store.subscribe(() => console.log(store.getState()));
+
+store.dispatch(fetchUsers());
 
