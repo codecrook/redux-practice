@@ -14,6 +14,16 @@ const fetchUsersRequest = () => ({ type: FETCH_USERS_REQUEST });
 const fetchUsersSuccess = users => ({ type: FETCH_USERS_SUCCESS, payload: users });
 const fetchUsersFailure = error => ({ type: FETCH_USERS_FAILURE, payload: error });
 
+// Async Actions //
+const fetchUsers = () => dispatch => {
+    dispatch(fetchUsersRequest());
+    axios.get("https://jsonplaceholder.typicode.com/users")
+        .then(response => {
+            const { data: users } = response;
+            dispatch(fetchUsersSuccess(users));
+        })
+        .catch(error => fetchUsersFailure(error.message));
+};
 
 
 // Initial State //
