@@ -1,4 +1,7 @@
 const redux = require("redux");
+const reduxThunk = require("redux-thunk").default;
+const axios = require("axios");
+
 const { createStore, applyMiddleware } = redux;
 
 // Action Types //
@@ -31,5 +34,5 @@ const reducer = (state = initialState, action) => {
 };
 
 // Store //
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(reduxThunk));
 
