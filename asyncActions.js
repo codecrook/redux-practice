@@ -1,5 +1,5 @@
 const redux = require("redux");
-const { createStore } = redux;
+const { createStore, applyMiddleware } = redux;
 
 // Action Types //
 const FETCH_USERS_REQUEST = "FETCH_USERS_REQUEST";
@@ -7,9 +7,11 @@ const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS";
 const FETCH_USERS_FAILURE = "FETCH_USERS_FAILURE";
 
 // Action Creators //
-const fetchUserRequest = () => ({ type: FETCH_USERS_REQUEST });
-const fetchUserSuccess = users => ({ type: FETCH_USERS_SUCCESS, payload: users });
-const fetchUserFailure = error => ({ type: FETCH_USERS_FAILURE, payload: error });
+const fetchUsersRequest = () => ({ type: FETCH_USERS_REQUEST });
+const fetchUsersSuccess = users => ({ type: FETCH_USERS_SUCCESS, payload: users });
+const fetchUsersFailure = error => ({ type: FETCH_USERS_FAILURE, payload: error });
+
+
 
 // Initial State //
 
@@ -17,7 +19,7 @@ const initialState = {
     loading: false,
     users: [],
     error: ''
-}
+};
 
 // Reducer //
 const reducer = (state = initialState, action) => {
@@ -30,5 +32,4 @@ const reducer = (state = initialState, action) => {
 
 // Store //
 const store = createStore(reducer);
-
 

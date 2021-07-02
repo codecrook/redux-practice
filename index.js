@@ -82,5 +82,3 @@ store.dispatch(stockupIceCream(15));
 
 // Unsubscibe //
 unsubscribe();
-
-// 12
